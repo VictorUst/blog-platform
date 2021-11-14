@@ -1,0 +1,32 @@
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #FFFFFF;
+  padding: 20px 20px 20px;
+}
+
+.header__title {
+  padding-left: 20px;
+  flex-grow: 2;
+}
+
+.header__title,
+.header__signIn,
+.header__signUp {
+  font-size: 18px;
+  line-height: 28px;
+  padding: 10px 20px;
+  margin-right: 20px;
+}
+
+.header__signIn:hover,
+.header__signUp:hover,
+.header__signIn:active,
+.header__signUp:active {
+  color: #52C41A;
+  border: 1px solid #52C41A;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 9px 19px;
+}

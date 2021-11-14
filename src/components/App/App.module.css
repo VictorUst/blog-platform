@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Inter';
+  src: url(/src/fonts/Inter-Regular.ttf) format('ttf');
+}
+
+.wrapper {
+  width: 1366px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0 auto;
+  background: #E5E5E5;
+  font-family: 'Inter';
+}
+
