@@ -1,7 +1,7 @@
 import React from 'react';
-import {  BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {  BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import ArticlesContainer from '../../containers/ArticlesContainer';
 import ArticleFull from '../ArticleFull/ArticleFull';
-import ArticleList from '../ArticleList/ArticleList';
 import Header from '../Header/Header';
 import classes from './App.module.css';
 
@@ -10,7 +10,8 @@ const App = () => (
     <div className={classes.wrapper}>
       <Header />
       <Routes>
-        <Route path='/articles'  element={ <ArticleList />} />
+        <Route path='/' element={<Navigate to="/articles" />} exact />
+        <Route path='/articles'  element={ <ArticlesContainer />} />
         <Route path='/articles/slug'  element={ <ArticleFull />} />
       </Routes>
     </div>
