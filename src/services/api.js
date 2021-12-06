@@ -16,6 +16,8 @@ const getResource = async (url) => {
   }
 }
 
-export const getArticles = () => getResource(`/articles`);
+export const getArticlesList = () => getResource(`/articles`);
+
+export const getArticle = (slug) => getResource(`/articles/${slug}`);
 
 export default getResource;

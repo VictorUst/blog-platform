@@ -5,7 +5,7 @@ import classes from './Header.module.css';
 const Header = () => (
     <header className={classes.header}>
       <div className={classes.header__title}>
-        <Link to='/'>
+        <Link to='/' className={classes.header__link}>
           Realworld Blog
         </Link>
       </div>

@@ -1,44 +1,50 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
+import { format } from 'date-fns';
 import classes from './Article.module.css';
 import like from '../../img/Like.png';
 
-
-
 const Article = ({ article }) => {
+
   const {
+    slug,
     title,
+    favoritesCount,
     description,
     tagList,
-    author: {username, image}
+    createdAt,
+    author
   } = article;
+
   return (
     <div className={classes.article__container}>
       <div className={classes.article__leftCol}>
         <div className={classes.article__titleContainer}>
           <h2 className={classes.article__title}>
-            <Link to='/articles/slug'>
+            <Link to={`/articles/${slug}`} className={classes.article__link}>
               {title}
             </Link>
           </h2>
           <div className={classes.article__like}>
             <img className={classes.article__likeImg} src={like} alt='like' />
           </div>
-          <div className={classes.article__likeCount}>12</div>
+          <div className={classes.article__likeCount}>{favoritesCount}</div>
         </div>
         <div className={classes.article__tags}>
-          {tagList.map(tag => <div key={tag} className={classes.article__tagItem}>{tag}</div>)}
+          {tagList && tagList.map(tag => <div key={tag} className={classes.article__tagItem}>{tag}</div>)}
         </div>
         <div className={classes.article__description}>{description}</div>
       </div>
       <div className={classes.article__rightCol}>
         <div className={classes.article__userInfo}>
-          <span className={classes.article__userName}>{username}</span>
-          <span className={classes.article__userData}>March 5, 2020</span>
+          <span className={classes.article__userName}>{author && author.username}</span>
+          <span className={classes.article__userData}>
+            {createdAt && format(new Date(createdAt), 'hh:mm MMMMMM dd') }
+          </span>
         </div>
         <div className={classes.article__userAvatar}>
-          <img className={classes.article__userAvatarImg} src={image} alt='avatar' />
+          <img className={classes.article__userAvatarImg} src={author && author.image} alt='avatar' />
         </div>
       </div>
     </div>
@@ -49,8 +55,11 @@ export default Article;
 Article.propTypes = {
   article:
     PropTypes.shape({
+      slug: PropTypes.string,
       title: PropTypes.string,
+      favoritesCount: PropTypes.number,
       description: PropTypes.string,
+      createdAt: PropTypes.string,
       tagList: PropTypes.arrayOf,
       author: PropTypes.shape({
         username: PropTypes.string,

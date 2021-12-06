@@ -30,6 +30,11 @@
   color: #1890FF;
 }
 
+.article__link {
+  color: #1890FF;
+  text-decoration: none;
+}
+
 .article__like {
   width: 20px;
   height: 20px;
@@ -92,4 +97,16 @@
   width: 46px;
   height: 46px;
   border-radius: 50%;
+}
+
+.article__userAvatarImg {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+
+.article_wrapperFull {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 25px 0;
 }

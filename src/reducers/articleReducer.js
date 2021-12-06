@@ -1,13 +1,27 @@
-import { SET_ARTICLES } from "../actions/actions";
+import {
+  SET_ARTICLE_PENDING,
+  SET_ARTICLE_FULLFILLED,
+  SET_ARTICLE_REJECTED
+ } from "../actions/articleActions";
 
-const initialState = {};
+const initialState = {
+  articleObj: {},
+  isLoading: false,
+  isError: false,
+  error: ''
+};
 
-const articleReducer = (state = initialState, { type, articles }) => {
+
+const articleReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case SET_ARTICLES:
-      return {...state, articles };
+    case SET_ARTICLE_PENDING:
+      return {...state, isLoading: payload };
+    case SET_ARTICLE_FULLFILLED:
+      return {...state, isLoading: false, articleObj: payload.article };
+    case SET_ARTICLE_REJECTED:
+      return {...state, isLoading: false, articleObj: {}, error: payload }
     default:
-      return state;
+      return {...state};
   }
 }
 

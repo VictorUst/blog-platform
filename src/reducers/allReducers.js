@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
+import articleListReducer from "./articleListReducer";
 import articleReducer from "./articleReducer";
 
 const allReducers = combineReducers({
-  articlesData: articleReducer
+  articleData: articleReducer,
+  articles: articleListReducer
 })
 
 export default allReducers;
