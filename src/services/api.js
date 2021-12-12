@@ -16,7 +16,10 @@ const getResource = async (url) => {
   }
 }
 
-export const getArticlesList = () => getResource(`/articles`);
+export const getArticlesList = (page = 1) => {
+  const offset = (page - 1) * 5;
+  return getResource(`/articles?limit=5&offset=${offset}`)
+}
 
 export const getArticle = (slug) => getResource(`/articles/${slug}`);
 

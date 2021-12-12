@@ -10,6 +10,7 @@ const ArticleFull = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
   const article = useSelector(state => state.articleData.articleObj);
+  const isLoading = useSelector(state => state.articleData.isLoading);
 
   useEffect(() => {
     dispatch(getArticleItem(`${slug}`))
@@ -25,6 +26,7 @@ const ArticleFull = () => {
     author
   } = article;
 
+  if(isLoading) return <div>Loading...</div>;
 
   return (
     <div className = {classes.article_wrapperFull}>
