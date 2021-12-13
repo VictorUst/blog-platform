@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import { getArticleItem } from '../../actions/articleActions';
 import classes from './Article.module.css';
 import like from '../../img/Like.png';
+import Loader from '../Loader/Loader';
 
 const ArticleFull = () => {
   const { slug } = useParams();
@@ -26,7 +27,9 @@ const ArticleFull = () => {
     author
   } = article;
 
-  if(isLoading) return <div>Loading...</div>;
+  console.log(isLoading);
+
+  if(isLoading) return <Loader />;
 
   return (
     <div className = {classes.article_wrapperFull}>

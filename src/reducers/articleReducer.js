@@ -15,7 +15,7 @@ const initialState = {
 const articleReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_ARTICLE_PENDING:
-      return {...state, isLoading: payload };
+      return {...state, isLoading: true };
     case SET_ARTICLE_FULLFILLED:
       return {...state, isLoading: false, articleObj: payload.article };
     case SET_ARTICLE_REJECTED:

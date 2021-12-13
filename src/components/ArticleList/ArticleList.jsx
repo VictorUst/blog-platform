@@ -4,6 +4,7 @@ import { Pagination } from 'antd';
 import { getArticles } from '../../actions/articleListActions';
 import Article from '../Article/Article';
 import classes from './ArticleList.module.css';
+import Loader from '../Loader/Loader';
 
 const ArticleList = () => {
   const dispatch = useDispatch();
@@ -20,20 +21,21 @@ const ArticleList = () => {
     setPage(curPage);
   }
 
-  if(isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
 
   return (
-    <main className={classes.main}>{
+    <main  className={classes.main}>
+      {
       articles &&
       articles.map((article) => <Article key={article.slug} article={article} />)
-    }
-    <Pagination
-      className={classes.pagination}
-      onChange={onPageChanged}
-      total={articlesCount/5}
-      current={page}
-      showSizeChanger={false}
-    />
+      }
+      <Pagination
+        className={classes.pagination}
+        onChange={onPageChanged}
+        total={articlesCount}
+        current={page}
+        showSizeChanger={false}
+      />
     </main>
   )
 }
