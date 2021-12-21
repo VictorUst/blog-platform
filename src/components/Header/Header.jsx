@@ -9,8 +9,16 @@ const Header = () => (
           Realworld Blog
         </Link>
       </div>
-      <div className={classes.header__signIn}>Sign In</div>
-      <div className={classes.header__signUp}>Sign Up</div>
+      <Link to='/sign-in' className={classes.sign__link}>
+        <div className={classes.header__sign}>
+            Sign In
+        </div>
+      </Link>
+      <Link to='/sign-up' className={classes.sign__link}>
+        <div className={classes.header__sign}>
+            Sign Up
+        </div>
+      </Link>
     </header>
   )
 
