@@ -27,7 +27,7 @@ const SignUpForm = () => {
           <label className={classes.form_label}>
           <div className={classes.field_title}>Username</div>
             <input
-                className={classes.field_input}
+                className={`${classes.field_input} ${errors.username && classes.invalid}`}
                 type='text'
                 placeholder='Username'
                 {...register('username', {
@@ -43,13 +43,13 @@ const SignUpForm = () => {
                 })}
             />
           </label>
-          <div>{errors?.username && <p>{errors?.username?.message || 'Error!'}</p>}</div>
+          <div>{errors.username && <p className={classes.error_message}>{errors.username.message || 'Error!'}</p>}</div>
         </div>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
           <div className={classes.field_title}>Email address</div>
             <input
-                className={classes.field_input}
+                className={`${classes.field_input} ${errors.email && classes.invalid}`}
                 type='text'
                 placeholder='Email address'
                 {...register('email', {
@@ -61,14 +61,14 @@ const SignUpForm = () => {
                 })}
             />
           </label>
-          <div>{errors?.email && <p>{errors?.email?.message || 'Error!'}</p>}</div>
+          <div>{errors.email && <p className={classes.error_message}>{errors.email.message || 'Error!'}</p>}</div>
         </div>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
           <div className={classes.field_title}>Password</div>
             <input
-                className={classes.field_input}
-                type='text'
+                className={`${classes.field_input} ${errors.password && classes.invalid}`}
+                type='password'
                 placeholder='Password'
                 {...register('password', {
                   required: 'Поле обязательно к заполнению',
@@ -83,14 +83,14 @@ const SignUpForm = () => {
                 })}
             />
           </label>
-          <div>{errors?.password && <p>{errors?.password?.message || 'Error!'}</p>}</div>
+          <div>{errors.password && <p className={classes.error_message}>{errors.password.message || 'Error!'}</p>}</div>
         </div>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
             <div className={classes.field_title}>Repeat password</div>
             <input
-                className={classes.field_input}
-                type='text'
+                className={`${classes.field_input} ${errors.repeatPassword && classes.invalid}`}
+                type='password'
                 placeholder='Password'
                 {...register('repeatPassword', {
                   required: 'Поле обязательно к заполнению',
@@ -98,7 +98,7 @@ const SignUpForm = () => {
                 })}
             />
           </label>
-          <div>{errors?.repeatPassword && <p>{errors?.repeatPassword?.type === 'validate' && <p>Пароли не совпадают</p>}</p>}</div>
+          <div>{errors.repeatPassword && <p className={classes.error_message}>{errors.repeatPassword.type === 'validate' && <p>Пароли не совпадают</p>}</p>}</div>
         </div>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
@@ -111,7 +111,7 @@ const SignUpForm = () => {
             />
             <span className={classes.form_checkbox_text}>I agree to the processing of my personal information</span>
           </label>
-          <div>{errors.agreement && <p>{errors.agreement.message}</p>}</div>
+          <div>{errors.agreement && <p className={classes.error_message}>{errors.agreement.message}</p>}</div>
         </div>
         <div className={classes.form_field}>
           <button className={classes.field_button} type='submit' name='submit' disabled={!isValid}>Create</button>

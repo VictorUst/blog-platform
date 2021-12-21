@@ -27,7 +27,7 @@ const SignInForm = () => {
           <label className={classes.form_label}>
             <div className={classes.field_title}>Email address</div>
             <input
-                className={classes.field_input}
+                className={`${classes.field_input} ${errors.email && classes.invalid}`}
                 type='text'
                 placeholder='Email address'
                 {...register('email', {
@@ -39,21 +39,21 @@ const SignInForm = () => {
                 })}
             />
           </label>
-          <div>{errors?.email && <p>{errors?.email?.message || 'Error!'}</p>}</div>
+          <div>{errors.email && <p className={classes.error_message}>{errors.email.message || 'Error!'}</p>}</div>
         </div>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
           <div className={classes.field_title}>Password</div>
             <input
-                className={classes.field_input}
-                type='text'
+                className={`${classes.field_input} ${errors.password && classes.invalid}`}
+                type='password'
                 placeholder='Password'
                 {...register('password', {
                   required: 'Поле обязательно к заполнению',
                 })}
             />
           </label>
-          <div>{errors?.password && <p>{errors?.password?.message || 'Error!'}</p>}</div>
+          <div>{errors.password && <p className={classes.error_message}>{errors.password.message || 'Error!'}</p>}</div>
         </div>
         <div className={classes.form_field}>
           <button className={classes.field_button} type='submit' name='submit' disabled={!isValid}>Login</button>

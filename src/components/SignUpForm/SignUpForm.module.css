@@ -78,3 +78,11 @@
   font-size: 12px;
   line-height: 20px;
 }
+
+.error_message {
+  color: #F5222D;
+}
+
+.invalid {
+  border: 1px solid #F5222D;
+}
