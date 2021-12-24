@@ -14,7 +14,7 @@ const ArticleFull = () => {
   const isLoading = useSelector(state => state.articleData.isLoading);
 
   useEffect(() => {
-    dispatch(getArticleItem(`${slug}`))
+    dispatch(getArticleItem(slug))
   }, [dispatch, slug]);
 
   const {
@@ -26,8 +26,6 @@ const ArticleFull = () => {
     createdAt,
     author
   } = article;
-
-  console.log(isLoading);
 
   if(isLoading) return <Loader />;
 

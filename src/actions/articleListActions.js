@@ -1,4 +1,4 @@
-import { getArticlesList } from "../services/api";
+import apiService from "../services/apiService";
 
 export const SET_ARTICLES_PENDING = 'SET_ARTICLES_PENDING';
 export const SET_ARTICLES_FULLFILLED = 'SET_ARTICLES_FULLFILLED';
@@ -21,7 +21,7 @@ export const setArticlesRejected = (payload) => ({
 
 export const getArticles = (offset) => (dispatch) => {
   dispatch(setArticlesPending(true));
-  getArticlesList(offset)
+  apiService.getArticlesList(offset)
       .then((data) => dispatch(setArticlesFullfilled(data)))
       .catch((err) => dispatch(setArticlesRejected(`error: ${err}`)))
       .finally(dispatch(setArticlesPending(false)))
