@@ -53,6 +53,7 @@
   border-radius: 4px;
   background-color: #1890FF;
   color: white;
+  cursor: pointer;
 }
 
 .form_checkbox {

@@ -8,19 +8,18 @@ import SignInForm from '../SignInForm/SignInForm';
 import classes from './App.module.css';
 
 const App = () => (
-  <Router>
-    <div className={classes.wrapper}>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Navigate to="/articles" />} exact />
-        <Route path='/articles'  element={ <ArticleList />} exact />
-        <Route path='/articles/:slug'  element={ <ArticleFull />} exact />
-        <Route path='/sign-in'  element={ <SignInForm />} exact />
-        <Route path='/sign-up'  element={ <SignUpForm />} exact />
-      </Routes>
-    </div>
-  </Router>
+    <Router>
+      <div className={classes.wrapper}>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Navigate to="/articles" />} />
+          <Route path='/articles'  element={ <ArticleList />} />
+          <Route path='/articles/:slug'  element={ <ArticleFull />} />
+          <Route path='/sign-in'  element={ <SignInForm />} />
+          <Route path='/sign-up'  element={ <SignUpForm />} />
+        </Routes>
+      </div>
+    </Router>
   )
-
 
 export default App;

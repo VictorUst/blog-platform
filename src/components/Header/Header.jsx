@@ -1,26 +1,23 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classes from './Header.module.css';
+import UserLogOutView from '../UserLogOutView/UserLogOutView';
+import UserLogInView from '../UserLogInView/UserLogInView';
 
-const Header = () => (
+const Header = () => {
+  const { isLogin } = useSelector((state) => state.auth);
+
+  return (
     <header className={classes.header}>
       <div className={classes.header__title}>
         <Link to='/' className={classes.header__link}>
           Realworld Blog
         </Link>
       </div>
-      <Link to='/sign-in' className={classes.sign__link}>
-        <div className={classes.header__sign}>
-            Sign In
-        </div>
-      </Link>
-      <Link to='/sign-up' className={classes.sign__link}>
-        <div className={classes.header__sign}>
-            Sign Up
-        </div>
-      </Link>
+      { isLogin ? <UserLogInView /> : <UserLogOutView /> }
     </header>
   )
-
+};
 
 export default Header;

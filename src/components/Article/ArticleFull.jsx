@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { format } from 'date-fns';
-import { getArticleItem } from '../../actions/articleActions';
+import { getArticleItem } from '../../redux/actions/articleActions';
 import classes from './Article.module.css';
 import like from '../../img/Like.png';
 import Loader from '../Loader/Loader';
@@ -11,7 +11,7 @@ const ArticleFull = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
   const article = useSelector(state => state.articleData.articleObj);
-  const isLoading = useSelector(state => state.articleData.isLoading);
+  const isLoading = useSelector(state => state.loading.isLoading);
 
   useEffect(() => {
     dispatch(getArticleItem(slug))

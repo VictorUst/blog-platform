@@ -1,9 +1,18 @@
-import React, {useRef} from 'react';
+import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { loginUser } from '../../redux/actions/authActions';
+import ApiService from "../../services/apiService";
 import classes from './SignInForm.module.css';
 
 const SignInForm = () => {
+  const apiService = new ApiService();
+
+  const [serverError, setServerError] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {
     watch,
     register,
@@ -11,14 +20,25 @@ const SignInForm = () => {
     handleSubmit,
     reset
   } = useForm({
-    mode: 'onBlur'
+    mode: 'all'
   });
+
   const password = useRef();
   password.current = watch('password');
+
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    apiService.loginUser(data).then((response) => {
+      if (response.user) {
+        dispatch(loginUser(response.user));
+        navigate('/');
+      }
+      if (response.errors) {
+        setServerError(response.errors);
+      }
+    })
     reset();
-  }
+  };
+
   return (
     <div className={classes.form_container}>
       <h1 className={classes.form_title}>Sign In</h1>
@@ -54,6 +74,7 @@ const SignInForm = () => {
             />
           </label>
           <div>{errors.password && <p className={classes.error_message}>{errors.password.message || 'Error!'}</p>}</div>
+          {serverError && <div className={classes.error_message}>Неправильный логин или пароль</div>}
         </div>
         <div className={classes.form_field}>
           <button className={classes.field_button} type='submit' name='submit' disabled={!isValid}>Login</button>

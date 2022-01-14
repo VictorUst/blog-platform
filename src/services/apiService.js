@@ -33,7 +33,7 @@ class ApiService extends React.Component {
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ user: data })
       }
     )
     return response.json();
@@ -46,13 +46,11 @@ class ApiService extends React.Component {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify({ user: data })
     }
   )
   return response.json();
   }
 }
 
-const apiService = new ApiService();
-
-export default apiService;
+export default ApiService;

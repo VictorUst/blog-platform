@@ -1,9 +1,18 @@
-import React, {useRef} from 'react';
+import React, { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classes from './SignUpForm.module.css';
+import { loginUser } from '../../redux/actions/authActions';
+import ApiService from '../../services/apiService';
 
 const SignUpForm = () => {
+  const apiService = new ApiService();
+
+  const [serverError, setServerError] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {
     watch,
     register,
@@ -11,14 +20,25 @@ const SignUpForm = () => {
     handleSubmit,
     reset
   } = useForm({
-    mode: 'onBlur'
+    mode: 'all'
   });
+
   const password = useRef();
   password.current = watch('password');
+
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    apiService.registerUser(data).then((response) => {
+      if(response.user) {
+        dispatch(loginUser(response.user));
+        navigate('/');
+      }
+      if(response.errors) {
+        setServerError(response.errors);
+      }
+    })
     reset();
   }
+
   return (
     <div className={classes.form_container}>
       <h1 className={classes.form_title}>Create new account</h1>
@@ -112,6 +132,7 @@ const SignUpForm = () => {
             <span className={classes.form_checkbox_text}>I agree to the processing of my personal information</span>
           </label>
           <div>{errors.agreement && <p className={classes.error_message}>{errors.agreement.message}</p>}</div>
+          {serverError && <div className={classes.error_message}>Пользователь с таким логином или почтой уже существует</div>}
         </div>
         <div className={classes.form_field}>
           <button className={classes.field_button} type='submit' name='submit' disabled={!isValid}>Create</button>
