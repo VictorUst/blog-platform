@@ -51,6 +51,20 @@ class ApiService extends React.Component {
   )
   return response.json();
   }
+
+  async updateUser(data, token) {
+    const response = await fetch(`${this.baseUrl}/user`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        'Authorization': `Token ${token}`
+      },
+      body: JSON.stringify({ user: data })
+    }
+  )
+  return response.json();
+  }
 }
 
 export default ApiService;

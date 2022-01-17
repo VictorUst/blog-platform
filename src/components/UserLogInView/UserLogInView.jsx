@@ -11,23 +11,22 @@ const UserLogInView = () => {
   const { username, image } = userData;
 
   const onLogOut = () => {
-    localStorage.removeItem('token');
     dispatch(logoutUser());
   }
 
   return (
     <>
-      <Link to='/new-profile' className={classes.sign__link}>
-        <div className={classes.header__sign}>
+      <Link to='/new-article' className={classes.createArticle__link}>
+        <div className={classes.createArticle__title}>
             Create Article
         </div>
       </Link>
-      <Link to='/profile'>
-        {username}
-      </Link>
-      <Link to='/profile'>
-        <img src={image || avatar} alt='avatar' />
-      </Link>
+      <div className={classes.profile__container}>
+        <Link to='/profile' className={classes.profile__link}>
+          {username}
+          <img className={classes.profileImg} src={image || avatar} alt='avatar' />
+        </Link>
+      </div>
       <Link to='/' className={classes.sign__link} onClick={onLogOut}>
         <div className={classes.header__sign}>
             Log out

@@ -1,17 +1,19 @@
 import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import classes from './SignUpForm.module.css';
+import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../redux/actions/authActions';
-import ApiService from '../../services/apiService';
+import ApiService from "../../services/apiService";
+import classes from './EditProfile.module.css';
 
-const SignUpForm = () => {
+const EditProfile = () => {
   const apiService = new ApiService();
 
   const [serverError, setServerError] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { userData } = useSelector((state) => state.auth);
+  const { username, email, token } = userData;
 
   const {
     watch,
@@ -27,9 +29,10 @@ const SignUpForm = () => {
   password.current = watch('password');
 
   const onSubmit = (data) => {
-    apiService.registerUser(data).then((response) => {
+    apiService.updateUser(data, token).then((response) => {
       if(response.user) {
         dispatch(loginUser(response.user));
+        console.log(response.user);
         navigate('/');
       }
       if(response.errors) {
@@ -37,11 +40,11 @@ const SignUpForm = () => {
       }
     })
     reset();
-  }
+  };
 
   return (
     <div className={classes.form_container}>
-      <h1 className={classes.form_title}>Create new account</h1>
+      <h1 className={classes.form_title}>Edit Profile</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form_fields}>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
@@ -50,6 +53,7 @@ const SignUpForm = () => {
                 className={`${classes.field_input} ${errors.username && classes.invalid}`}
                 type='text'
                 placeholder='Username'
+                defaultValue={username}
                 {...register('username', {
                   required: 'Поле обязательно к заполнению',
                   minLength: {
@@ -72,6 +76,7 @@ const SignUpForm = () => {
                 className={`${classes.field_input} ${errors.email && classes.invalid}`}
                 type='text'
                 placeholder='Email address'
+                defaultValue={email}
                 {...register('email', {
                   required: 'Поле обязательно к заполнению',
                   pattern: {
@@ -85,11 +90,11 @@ const SignUpForm = () => {
         </div>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
-          <div className={classes.field_title}>Password</div>
+          <div className={classes.field_title}>New password</div>
             <input
                 className={`${classes.field_input} ${errors.password && classes.invalid}`}
                 type='password'
-                placeholder='Password'
+                placeholder='New password'
                 {...register('password', {
                   required: 'Поле обязательно к заполнению',
                   minLength: {
@@ -107,43 +112,28 @@ const SignUpForm = () => {
         </div>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
-            <div className={classes.field_title}>Repeat password</div>
+            <div className={classes.field_title}>Avatar image (url)</div>
             <input
-                className={`${classes.field_input} ${errors.repeatPassword && classes.invalid}`}
-                type='password'
-                placeholder='Password'
-                {...register('repeatPassword', {
-                  required: 'Поле обязательно к заполнению',
-                  validate: (value) => value === password.current
+                className={`${classes.field_input} ${errors.avatar && classes.invalid}`}
+                type='text'
+                placeholder='Avatar image'
+                {...register('image', {
+                  pattern: {
+                    value: /(http?|https?):\/\/(www\.)?[-\w@:%\\.\\+~#=]{1,256}\.[a-z0-9()]{1,6}\b([-\w()@:%\\.\\+~#=//?&]*)/i,
+                    message: 'Неккоректный url'
+                  }
                 })}
             />
           </label>
-          <div>{errors.repeatPassword && <p className={classes.error_message}>{errors.repeatPassword.type === 'validate' && <p>Пароли не совпадают</p>}</p>}</div>
+          <div>{errors.image && <p className={classes.error_message}>{errors.image.message || 'Error!'}</p>}</div>
+          {serverError && <div className={classes.error_message}>Ошибка</div>}
         </div>
         <div className={classes.form_field}>
-          <label className={classes.form_label}>
-            <input
-                className={classes.form_checkbox}
-                type='checkbox'
-                {...register('agreement', {
-                  required: 'Поле обязательно к заполнению',
-                })}
-            />
-            <span className={classes.form_checkbox_text}>I agree to the processing of my personal information</span>
-          </label>
-          <div>{errors.agreement && <p className={classes.error_message}>{errors.agreement.message}</p>}</div>
-          {serverError && <div className={classes.error_message}>Пользователь с таким логином или почтой уже существует</div>}
-        </div>
-        <div className={classes.form_field}>
-          <button className={classes.field_button} type='submit' name='submit' >Create</button>
-        </div>
-        <div className={classes.form_question_container}>
-          <span className={classes.form_question_text}>Already have an account? </span>
-          <Link to='/sign-in' className={classes.form_question_link}>Sign In</Link>
+          <button className={classes.field_button} type='submit' name='submit' >Save</button>
         </div>
       </form>
     </div>
   )
 }
 
-export default SignUpForm;
+export default EditProfile;

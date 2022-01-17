@@ -1,29 +1,22 @@
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  background-color: #FFFFFF;
-  padding: 20px 20px 20px;
-}
-
-.header__title {
-  padding-left: 20px;
-  flex-grow: 2;
-}
-
 .header__link,
-.sign__link {
+.sign__link,
+.createArticle__link,
+.profile__link,
+.profile__link:hover {
   color: black;
   text-decoration: none;
 }
 
 .sign__link:hover,
-.sign__link:active
+.createArticle__link:hover,
+.profile__link:hover
  {
   color: #52C41A;
 }
 
 .header__title,
+.createArticle__title,
 .header__sign {
   color: black;
   text-decoration: none;
@@ -34,10 +27,30 @@
 }
 
 .header__sign:hover,
-.header__signIn:active {
+.createArticle__title:hover{
   color: #52C41A;
   border: 1px solid #52C41A;
   box-sizing: border-box;
   border-radius: 5px;
   padding: 9px 19px;
+}
+
+.profile__container {
+  display: flex;
+}
+
+.profile__link {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  line-height: 28px;
+  margin-right: 27px;
+  margin-left: 7px;
+}
+
+.profileImg {
+  margin-left: 13px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
 }

@@ -1,0 +1,65 @@
+.form_container {
+  width: 385px;
+  height: 600px;
+  background-color: #FFFFFF;
+  margin: 0 auto;
+  margin-top: 60px;
+  font-family: 'Roboto', sans-serif;
+  color: #262626;
+  border: 1px solid #D9D9D9;
+  box-sizing: border-box;
+  box-shadow: 0px 22px 106px rgba(0, 0, 0, 0.07), 0px 9.19107px 44.2843px rgba(0, 0, 0, 0.0503198), 0px 4.91399px 23.6765px rgba(0, 0, 0, 0.0417275), 0px 2.75474px 13.2728px rgba(0, 0, 0, 0.035), 0px 1.46302px 7.04911px rgba(0, 0, 0, 0.0282725), 0px 0.608796px 2.93329px rgba(0, 0, 0, 0.0196802);
+  border-radius: 6px;
+}
+
+.form_title {
+  color: #262626;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.form_field {
+  padding: 0 32px;
+  margin-bottom: 12px;
+}
+
+.field_title {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.field_input {
+  height: 40px;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.field_input:focus {
+  outline: none;
+  border: 2px solid#1890FF;
+}
+
+.field_button {
+  height: 40px;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  box-sizing: border-box;
+  border-radius: 4px;
+  background-color: #1890FF;
+  color: white;
+  cursor: pointer;
+}
+
+.error_message {
+  color: #F5222D;
+}
+
+.invalid {
+  border: 1px solid #F5222D;
+}

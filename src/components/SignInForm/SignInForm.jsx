@@ -16,7 +16,7 @@ const SignInForm = () => {
   const {
     watch,
     register,
-    formState: { errors, isValid },
+    formState: { errors },
     handleSubmit,
     reset
   } = useForm({
@@ -77,7 +77,7 @@ const SignInForm = () => {
           {serverError && <div className={classes.error_message}>Неправильный логин или пароль</div>}
         </div>
         <div className={classes.form_field}>
-          <button className={classes.field_button} type='submit' name='submit' disabled={!isValid}>Login</button>
+          <button className={classes.field_button} type='submit' name='submit' >Login</button>
         </div>
         <div className={classes.form_question_container}>
           <span className={classes.form_question_text}>Don&apos;t have an account? </span>
