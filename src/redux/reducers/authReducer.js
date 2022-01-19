@@ -1,6 +1,6 @@
 import {
   LOG_IN_USER,
-  LOG_OUT_USER,
+  LOG_OUT_USER
   } from '../actions/authActions';
 
 const initialState = {

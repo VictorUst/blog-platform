@@ -3,29 +3,20 @@ import React from 'react';
 class ApiService extends React.Component {
   baseUrl = 'https://cirosantilli-realworld-next.herokuapp.com/api';
 
-  async getRequest(url) {
-    const response = await fetch(`${this.baseUrl}${url}`)
-      .then((res) => {
-        if(!res.ok) {
-          throw new Error(`Could not fetch ${url}, received ${res.status}`)
-        }
-        return res.json();
-      })
-      .catch((error) => console.error(`Could not fetch `, error.message));
-    return response;
-  }
-
+  // получение списка статей
   async getArticlesList(page = 1) {
     const offset = (page - 1) * 5;
-    const response = await this.getRequest(`/articles?limit=5&offset=${offset}`);
-    return response;
+    const response = await fetch(`${this.baseUrl}/articles?limit=5&offset=${offset}`);
+    return response.json();
   }
 
+  // получение полной статьи
   async getArticle(slug) {
-    const response = await this.getRequest(`/articles/${slug}`);
-    return response;
+    const response = await fetch(`${this.baseUrl}/articles/${slug}`);
+    return response.json();
   }
 
+  // регистрация пользователя
   async registerUser(data) {
     const response = await fetch(`${this.baseUrl}/users`,
       {
@@ -39,31 +30,48 @@ class ApiService extends React.Component {
     return response.json();
   }
 
+  // авторизация пользователя
   async loginUser(data) {
     const response = await fetch(`${this.baseUrl}/users/login`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      body: JSON.stringify({ user: data })
-    }
-  )
-  return response.json();
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+        body: JSON.stringify({ user: data })
+      }
+    )
+    return response.json();
   }
 
+  // обновление данных пользователя
   async updateUser(data, token) {
     const response = await fetch(`${this.baseUrl}/user`,
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        'Authorization': `Token ${token}`
-      },
-      body: JSON.stringify({ user: data })
-    }
-  )
-  return response.json();
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Authorization': `Token ${token}`
+        },
+        body: JSON.stringify({ user: data })
+      }
+    )
+    return response.json();
+  }
+
+  // добавление новой статьи
+  async createArticle(data, token) {
+    const response = await fetch(`${this.baseUrl}/articles`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Authorization': `Token ${token}`
+        },
+        body: JSON.stringify({ article: data })
+      }
+    )
+    return response.json();
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,7 +14,6 @@ const SignInForm = () => {
   const navigate = useNavigate();
 
   const {
-    watch,
     register,
     formState: { errors },
     handleSubmit,
@@ -22,9 +21,6 @@ const SignInForm = () => {
   } = useForm({
     mode: 'all'
   });
-
-  const password = useRef();
-  password.current = watch('password');
 
   const onSubmit = (data) => {
     apiService.loginUser(data).then((response) => {

@@ -1,22 +1,21 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { loginUser } from '../../redux/actions/authActions';
 import ApiService from "../../services/apiService";
-import classes from './EditProfile.module.css';
+import classes from './EditProfileForm.module.css';
 
-const EditProfile = () => {
+const EditProfileForm = () => {
   const apiService = new ApiService();
 
   const [serverError, setServerError] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userData } = useSelector((state) => state.auth);
-  const { username, email, token } = userData;
+  const { username, email, token, image } = userData;
 
   const {
-    watch,
     register,
     formState: { errors },
     handleSubmit,
@@ -25,14 +24,10 @@ const EditProfile = () => {
     mode: 'all'
   });
 
-  const password = useRef();
-  password.current = watch('password');
-
   const onSubmit = (data) => {
     apiService.updateUser(data, token).then((response) => {
       if(response.user) {
         dispatch(loginUser(response.user));
-        console.log(response.user);
         navigate('/');
       }
       if(response.errors) {
@@ -48,7 +43,7 @@ const EditProfile = () => {
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form_fields}>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
-          <div className={classes.field_title}>Username</div>
+            <div className={classes.field_title}>Username</div>
             <input
                 className={`${classes.field_input} ${errors.username && classes.invalid}`}
                 type='text'
@@ -71,7 +66,7 @@ const EditProfile = () => {
         </div>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
-          <div className={classes.field_title}>Email address</div>
+            <div className={classes.field_title}>Email address</div>
             <input
                 className={`${classes.field_input} ${errors.email && classes.invalid}`}
                 type='text'
@@ -90,7 +85,7 @@ const EditProfile = () => {
         </div>
         <div className={classes.form_field}>
           <label className={classes.form_label}>
-          <div className={classes.field_title}>New password</div>
+            <div className={classes.field_title}>New password</div>
             <input
                 className={`${classes.field_input} ${errors.password && classes.invalid}`}
                 type='password'
@@ -117,6 +112,7 @@ const EditProfile = () => {
                 className={`${classes.field_input} ${errors.avatar && classes.invalid}`}
                 type='text'
                 placeholder='Avatar image'
+                defaultValue={image}
                 {...register('image', {
                   pattern: {
                     value: /(http?|https?):\/\/(www\.)?[-\w@:%\\.\\+~#=]{1,256}\.[a-z0-9()]{1,6}\b([-\w()@:%\\.\\+~#=//?&]*)/i,
@@ -136,4 +132,4 @@ const EditProfile = () => {
   )
 }
 
-export default EditProfile;
+export default EditProfileForm;

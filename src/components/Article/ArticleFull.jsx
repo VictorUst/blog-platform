@@ -10,7 +10,7 @@ import Loader from '../Loader/Loader';
 const ArticleFull = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
-  const article = useSelector(state => state.articleData.articleObj);
+  const article = useSelector(state => state.article.articleObj);
   const isLoading = useSelector(state => state.loading.isLoading);
 
   useEffect(() => {

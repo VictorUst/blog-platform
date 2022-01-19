@@ -1,5 +1,5 @@
-.form_container {
-  width: 385px;
+.form__container {
+  width: 960px;
   height: auto;
   background-color: #FFFFFF;
   margin: 0 auto;
@@ -12,7 +12,7 @@
   border-radius: 6px;
 }
 
-.form_title {
+.form__title {
   color: #262626;
   font-weight: 500;
   font-size: 20px;
@@ -21,33 +21,44 @@
   padding-top: 50px;
 }
 
-.form_field {
+
+.form__field {
   padding: 0 32px;
   margin-bottom: 12px;
 }
 
-.field_title {
+.form__field__title {
   font-weight: normal;
   font-size: 14px;
   line-height: 22px;
 }
 
-.field_input {
-  height: 40px;
+.form__field__input,
+.form__field__textarea {
   width: 100%;
   border: 1px solid #d9d9d9;
   box-sizing: border-box;
   border-radius: 4px;
 }
 
-.field_input:focus {
+.form__field__input {
+  height: 40px;
+}
+
+.form__field__textarea {
+  height: 168px;
+  resize: none;
+}
+
+.form__field__input:focus,
+.form__field__textarea:focus {
   outline: none;
   border: 2px solid#1890FF;
 }
 
-.field_button {
+.form__field__button {
   height: 40px;
-  width: 100%;
+  width: 320px;
   border: 1px solid #d9d9d9;
   box-sizing: border-box;
   border-radius: 4px;
@@ -56,25 +67,54 @@
   cursor: pointer;
 }
 
-.form_question_container{
-  text-align: center;
+.form__tags__container {
+  display: flex;
+  align-items: flex-end;
 }
 
-.form_question_text {
-  font-size: 12px;
-  line-height: 20px;
-  color: #8C8C8C;
+.form__tagList {
+  margin-left: 0;
+  margin-bottom: 0;
+  padding-left: 0;
 }
 
-.form_question_link {
-  font-size: 12px;
-  line-height: 20px;
+.form__tagItem {
+  list-style-type: none;
+  margin-top: 5px;
 }
 
-.error_message {
+.form__tagInput {
+  width: 300px;
+}
+
+.form__tagDelete__button {
+  height: 40px;
+  width: 118px;
+  margin-left: 17px;
+  background-color: #FFFFFF;
+  color: #F5222D;
+  border: 1px solid #F5222D;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.form__tagAdd__button {
+  height: 40px;
+  width: 118px;
+  margin-left: 17px;
+  background-color: #FFFFFF;
+  color: #1890FF;
+  border: 1px solid #1890FF;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+.error__message {
   color: #F5222D;
 }
 
 .invalid {
   border: 1px solid #F5222D;
 }
+
+
