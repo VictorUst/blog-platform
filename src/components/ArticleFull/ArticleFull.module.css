@@ -1,0 +1,150 @@
+.article_wrapperFull {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 25px 0;
+}
+
+.article__container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding: 15px 20px 25px;
+  background-color: #FFFFFF;
+  border-radius: 5px;;
+  box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.article__leftCol {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.article__titleContainer {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.article__title {
+  margin: 0;
+  margin-right: 20px;
+  padding: 0;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 28px;
+  color: #1890FF;
+}
+
+.article__link {
+  color: #1890FF;
+  text-decoration: none;
+}
+
+.article__like {
+  width: 20px;
+  height: 20px;
+  margin-right: 1px;
+  align-self: flex-end;
+}
+
+.article__likeCount {
+  width: 20px;
+  height: 20px;
+  font-size: 15px;
+  align-self: flex-end;
+}
+
+.article__tags {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  overflow-wrap: break-word;
+  list-style: none;
+  margin-bottom: 5px;
+}
+
+.article__tagItem {
+  font-size: 12px;
+  padding: 2px 5px;
+  margin-right: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+}
+
+.article__bodyContainer {
+  margin-top: 20px;
+}
+.article__description {
+  color:rgba(0, 0, 0, 0.5);
+}
+
+.article__body {
+  color:rgba(0, 0, 0, 0.75);
+}
+
+.article__rightCol {
+  margin-left: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.article__userContainer {
+  display: flex;
+}
+
+.article__userInfo {
+  display: flex;
+  flex-direction: column;
+  margin-right: 12px;
+}
+
+.article__userName {
+  font-size: 20px;
+  color: #000000;
+}
+
+.article__userData {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.article__userAvatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+
+.article__userAvatarImg {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+
+.article__button__container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.article__button {
+  height: 30px;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.article__button__delete {
+  width: 78px;
+  color: #F5222D;
+  border: 1px solid #F5222D;
+}
+
+.article__button__edit {
+  width: 65px;
+  color: #52C41A;
+  border: 1px solid #52C41A;
+}

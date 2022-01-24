@@ -11,7 +11,7 @@ const ArticleForm = ({ article, onSubmitArticle }) => {
     handleSubmit,
     control
   } = useForm({
-    defaultValues: {...article, tagList: [...article.tagList.map((item) => ({ tagName: item }))] }
+    defaultValues: {...article, tagList: [...article.tagList.map((tag) => ({ tagName: tag }))] }
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -22,7 +22,7 @@ const ArticleForm = ({ article, onSubmitArticle }) => {
   const onSubmit = (data) => {
     onSubmitArticle({
       ...data,
-      tagList: data.tagList.reduce((acc, item) => (item.tagName.length ? [...acc, item.tagName] : acc), [])
+      tagList: data.tagList.reduce((acc, tag) => (tag.tagName.length ? [...acc, tag.tagName] : acc), [])
     });
   };
 

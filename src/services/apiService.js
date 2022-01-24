@@ -1,7 +1,8 @@
 import React from 'react';
 
 class ApiService extends React.Component {
-  baseUrl = 'https://cirosantilli-realworld-next.herokuapp.com/api';
+  baseUrl = 'https://kata.academy:8021/api';
+  // baseUrl = 'https://cirosantilli-realworld-next.herokuapp.com/api';
 
   // получение списка статей
   async getArticlesList(page = 1) {
@@ -69,6 +70,34 @@ class ApiService extends React.Component {
           'Authorization': `Token ${token}`
         },
         body: JSON.stringify({ article: data })
+      }
+    )
+    return response.json();
+  }
+
+  // обновление статьи
+  async editArticle(data, token, slug) {
+    const response = await fetch(`${this.baseUrl}/articles/${slug}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Authorization': `Token ${token}`
+        },
+        body: JSON.stringify({ article: data })
+      }
+    )
+    return response.json();
+  }
+
+  async deleteArticle(token, slug) {
+    const response = await fetch(`${this.baseUrl}/articles/${slug}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Authorization': `Token ${token}`
+        }
       }
     )
     return response.json();
