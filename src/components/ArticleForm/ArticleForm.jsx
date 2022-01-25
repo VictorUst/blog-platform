@@ -27,8 +27,6 @@ const ArticleForm = ({ article, onSubmitArticle }) => {
   };
 
   return (
-    <div className={classes.form__container}>
-      <h1 className={classes.form__title}>Create new article</h1>
       <form onSubmit={handleSubmit(onSubmit)} className={classes.form__fields}>
         <div className={classes.form__field}>
           <label className={classes.form__label}>
@@ -102,7 +100,6 @@ const ArticleForm = ({ article, onSubmitArticle }) => {
           <button className={classes.form__field__button} type='submit' name='submit'>Send</button>
         </div>
       </form>
-    </div>
   )
 }
 

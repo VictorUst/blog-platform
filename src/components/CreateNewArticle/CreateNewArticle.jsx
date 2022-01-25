@@ -25,10 +25,11 @@ const onSubmit = (data) => {
 }
 
  return (
-   <>
+  <div className={classes.form__container}>
+    <h1 className={classes.form__title}>Create new article</h1>
     <ArticleForm article={{tagList: ['']}} onSubmitArticle={(data) => onSubmit(data)} />
     {serverError && <div className={classes.error_message}>Ошибка</div>}
-   </>
+   </div>
  )
 }
 

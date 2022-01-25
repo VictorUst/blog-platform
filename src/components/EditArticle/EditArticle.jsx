@@ -31,10 +31,11 @@ const EditArticle = () => {
   })
 
   return (
-    <>
+    <div className={classes.form__container}>
+      <h1 className={classes.form__title}>Edit article</h1>
       <ArticleForm article={article} onSubmitArticle={(data) => onSubmit(data)} />
       {serverError && <div className={classes.error_message}>Ошибка</div>}
-    </>
+    </div>
   )
 }
 

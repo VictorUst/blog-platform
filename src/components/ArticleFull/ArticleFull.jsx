@@ -7,6 +7,7 @@ import ApiService from '../../services/apiService';
 import classes from './ArticleFull.module.css';
 import like from '../../img/Like.png';
 import Loader from '../Loader/Loader';
+import warning from '../../img/warning.svg';
 
 const ArticleFull = () => {
   const { slug } = useParams();
@@ -28,12 +29,14 @@ const ArticleFull = () => {
     author
   } = article;
 
+  const { token } = user;
+
   useEffect(() => {
     dispatch(getArticleItem(slug))
   }, [dispatch, slug]);
 
   const onDelete = () => {
-    apiService.deleteArticle(user.token, slug).then(() => {
+    apiService.deleteArticle(token, slug).then(() => {
       navigate('/articles');
     })
   }
@@ -75,7 +78,7 @@ const ArticleFull = () => {
               <img className={classes.article__userAvatarImg} src={author && author.image} alt='avatar' />
             </div>
           </div>
-          {author.username === user.username &&
+          {(author && author.username) === user.username &&
             <div className={classes.article__button__container}>
               <button
                type='button'
@@ -86,17 +89,34 @@ const ArticleFull = () => {
               </button>
               {showDeleteMessage &&
                 <div className={classes.modalMessage__container}>
-                  <span className={classes.modalMessage__title}>Are you sure to delete this article?</span>
-                  <button type='button' className={classes.modalMessage__buttonNo} onClick={() => setShowDeleteMessage(false)}>No</button>
-                  <button type='button' className={classes.modalMessage__buttonYes} onClick={() => onDelete()}>Yes</button>
+                  <div className={classes.modalMessage__header}>
+                    <img className={classes.modalMessage__img} src={warning} alt='' />
+                    <div className={classes.modalMessage__title}>Are you sure to delete this article?</div>
+                  </div>
+                  <div className={classes.modalMessage__buttons}>
+                    <button
+                      type='button'
+                      className={classes.modalMessage__buttonNo}
+                      onClick={() => setShowDeleteMessage(false)}
+                    >No
+                    </button>
+                    <button
+                      type='button'
+                      className={classes.modalMessage__buttonYes}
+                      onClick={() => onDelete()}
+                    >Yes
+                    </button>
+                  </div>
                 </div>
               }
-              <button
-               type='button'
-               className={`${classes.article__button} ${classes.article__button__edit}`}
-              >
-                Edit
-              </button>
+              <div className={`${classes.article__button} ${classes.article__button__edit}`}>
+                <Link
+                  to={`/articles/${slug}/edit`}
+                  className={`${classes.article__link__edit}`}
+                >
+                  Edit
+                </Link>
+              </div>
             </div>
           }
         </div>

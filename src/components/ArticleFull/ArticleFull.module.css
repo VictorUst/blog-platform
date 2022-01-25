@@ -127,6 +127,7 @@
   margin-top: 30px;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .article__button {
@@ -145,6 +146,69 @@
 
 .article__button__edit {
   width: 65px;
-  color: #52C41A;
   border: 1px solid #52C41A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article__link__edit,
+.article__link__edit:hover {
+  color: #52C41A;
+  text-decoration: none;
+
+}
+
+.modalMessage__container {
+  position: absolute;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 12px 16px;
+  gap: 12px;
+  left: 85px;
+  width: 240px;
+  height: 104px;
+  border-radius: 4px;
+  box-shadow: 5px 7px 10px 2px rgba(0, 0, 0, 0.2);
+}
+
+.modalMessage__container::before {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: -4px;
+  background-color: #FFFFFF;
+  content: ' ';
+  transform: rotate(45deg);
+}
+
+.modalMessage__header {
+  display: flex;
+  align-items: flex-start;
+}
+
+.modalMessage__img {
+  margin: 4px 9px;
+}
+
+.modalMessage__buttonNo {
+  width: 34px;
+  height: 24px;
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.modalMessage__buttonYes {
+  width: 39px;
+  height: 24px;
+  background: #1890FF;
+  border-radius: 4px;
+  color: #FFFFFF;
+  border: 1px solid #1890FF;
+  cursor: pointer;
 }
