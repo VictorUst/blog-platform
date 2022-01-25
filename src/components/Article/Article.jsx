@@ -51,7 +51,6 @@ const Article = ({ article }) => {
 
 export default Article;
 
-
 Article.propTypes = {
   article:
     PropTypes.shape({

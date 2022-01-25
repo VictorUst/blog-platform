@@ -152,11 +152,10 @@
   justify-content: center;
 }
 
-.article__link__edit,
-.article__link__edit:hover {
+.article__button__edit,
+.article__button__edit:hover {
   color: #52C41A;
   text-decoration: none;
-
 }
 
 .modalMessage__container {

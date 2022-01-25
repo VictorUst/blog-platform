@@ -12,11 +12,11 @@ import warning from '../../img/warning.svg';
 const ArticleFull = () => {
   const { slug } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const article = useSelector(state => state.article.articleObj);
   const isLoading = useSelector(state => state.loading.isLoading);
   const user = useSelector(state => state.auth.userData);
   const apiService = new ApiService();
-  const navigate = useNavigate();
   const [showDeleteMessage, setShowDeleteMessage] = useState(false);
 
   const {
@@ -109,14 +109,12 @@ const ArticleFull = () => {
                   </div>
                 </div>
               }
-              <div className={`${classes.article__button} ${classes.article__button__edit}`}>
-                <Link
-                  to={`/articles/${slug}/edit`}
-                  className={`${classes.article__link__edit}`}
-                >
-                  Edit
-                </Link>
-              </div>
+              <Link
+                to={`/articles/${slug}/edit`}
+                className={`${classes.article__button} ${classes.article__button__edit}`}
+              >
+                Edit
+              </Link>
             </div>
           }
         </div>
