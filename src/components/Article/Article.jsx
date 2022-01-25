@@ -6,7 +6,6 @@ import classes from './Article.module.css';
 import like from '../../img/Like.png';
 
 const Article = ({ article }) => {
-
   const {
     slug,
     title,
@@ -51,6 +50,7 @@ const Article = ({ article }) => {
   )};
 
 export default Article;
+
 
 Article.propTypes = {
   article:

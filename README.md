@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+Блог-платформа #1 - Начало
+Наша задача в этом курсе - реализовать примитивную блог-платформу. В ходе выполения познакомимся с аутентификацией и валидацией форм.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Проект реализуем целиком с использованием react hooks.
 
-## Available Scripts
+[Документация по API](https://api.realworld.io/api-docs/)
+[Макеты](https://www.figma.com/file/XXBjJXew3xpfbOZUnO9QVB/Blog)
 
-In the project directory, you can run:
+Корневой URL для API: https://kata.academy:8021/api
 
-### `yarn start`
+Реализуйте страницу со списком статей
+Сделайте пагинацию. Пагинация статей должна быть на стороне сервера - при смене страницы отправляем новый запрос. Не забываем индикаторы загрузки и обработку ошибок.
+Реализуйте страницу одной статьи. Обратите внимание, что полный текст статьи - это Markdown разметка, найдите подходящий модуль для вывода содержимого на экран.
+Используйте react-router для навигации по страницам.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Страницы:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+/ и /articles - список всех статей. При клике на заголовок - переход на страницу статьи. Кнопка лайка не активна, т.к. мы не авторизованы.
+/articles/{slug} - Просмотр статьи с полным текстом.
+Примечания:
 
-### `yarn test`
+Адаптивная верстка не обязательна
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+################################################
+Блог-платформа #2 - Аутентификация
 
-### `yarn build`
+Добавим механизм аутентификации, регистрации и редактирования профиля.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Создайте страницы влоха и регистрации и настройте роутинг (используем react-router v5)
+Сделайте форму регистрации
+Сделайте форму логина
+Сделайте отображение данных пользователя в шапке
+Настройте клиентскую валидацию и обработку ошибок сервера (см ниже подробности)
+Настройте, чтобы при перезагрузке страницы залогиненный пользователь сохранялся, сделайте функционал Log Out
+Реализуйте страницу редактирования профиля (переход на эту страницу - по клику на имени/аватаре пользователя в шапке.
+Страницы:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+/sign-in - Страница входа.
+/sign-up - Страница регистрации.
+/profile - Страница редактирования информации пользователя (см. метод Update User). Переход на эту страницу происходит по клике на имени-аватарке в шапке.
+Валидация
+Для клиентской валидации форм воспользуемся библиотекой React Hook Form.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Регистрация (все поля обязательны):
 
-### `yarn eject`
+email должен быть корректным почтовым адресом
+username должен быть от 3 до 20 символов (включительно)
+password должен быть от 6 до 40 символов (включительно)
+password и repeat password должны совпадать
+галочка согласия с обработкой персональных данных должна быть отмечена
+Логин:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+email должен быть не пустой, должен быть корректным почтовым адресом
+password должен быть не пустой
+Редактирование профиля:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+username не должен быть пустым
+email должен быть корректным почтовым адресом, не должен быть пустым
+new password должен быть от 6 до 40 символом
+avatar image должен быть корректным url
+Серверные ошибки должны нормально подсвечивать соответствующие поля.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#############################################################
+Блог-платформа #3 - Статьи
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Добавьте страницу создания статьи. Правила валидации - title, short description и text обязательны для заполнения.
+Добавьте страницу редактирования статьи. Реиспользуйте форму, использующуюся при создании.
+Добавьте кнопки редактирования/удаления на странице статьи. Сделайте подтверждение на действие удаления.
+Страницы:
 
-## Learn More
+/new-article - Страница создания статьи. При переходе по этой ссылке без аутентификации - перебрасывает на страницу логина (см. паттерн Private Route)
+/articles/{slug}/edit - Страница редактирования статьи.
+На странице отображения статьи добавляем кнопки Edit и Delete. По нажатию на Edit происходит переход на страницу редактирования, по Delete - открытие модалки подтверждения и запрос на удаление статьи.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#################################################################
+Блог-платформа #4 - Завершение
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Корневой URL для API: http://kata.academy:8022/
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Добавьте функционал лайков
+Проверяем все на работоспособность и отсутствие ошибок
+Проверяем отсутствие ошибок линтера
