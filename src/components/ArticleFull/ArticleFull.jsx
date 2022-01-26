@@ -37,8 +37,9 @@ const ArticleFull = () => {
 
   const onDelete = () => {
     apiService.deleteArticle(token, slug).then(() => {
-      navigate('/articles');
-    })
+      navigate('/');
+    });
+    setShowDeleteMessage(false);
   }
 
   if(isLoading) return <Loader />;

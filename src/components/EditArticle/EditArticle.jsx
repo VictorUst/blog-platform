@@ -23,7 +23,6 @@ const EditArticle = () => {
   const onSubmit = ((data) => {
     apiService.editArticle(data, token, slug).then((response) => {
       if (response.article) {
-        console.log(data);
         navigate(`/articles/${response.article.slug}`)
       }
       if (response.errors) setServerError(response.errors)

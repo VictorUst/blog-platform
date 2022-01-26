@@ -4,7 +4,6 @@ import { loadingAction } from "./loadingActions";
 export const SET_ARTICLES = 'SET_ARTICLES';
 export const SET_ARTICLE = 'SET_ARTICLE';
 export const CREATE_ARTICLE = 'CREATE_ARTICLE';
-export const DELETE_ARTICLE = 'DELETE_ARTICLE';
 
 export const setArticleList= (payload) => ({
   type: SET_ARTICLES,

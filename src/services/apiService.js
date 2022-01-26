@@ -90,6 +90,7 @@ class ApiService extends React.Component {
     return response.json();
   }
 
+  // удаление статьи
   async deleteArticle(token, slug) {
     const response = await fetch(`${this.baseUrl}/articles/${slug}`,
       {

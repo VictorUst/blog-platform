@@ -17,7 +17,6 @@ const CreateNewArticle = () => {
 const onSubmit = (data) => {
   apiService.createArticle(data, token).then((response) => {
     if (response.article) {
-      console.log(data);
       navigate(`/articles/${response.article.slug}`)
     }
     if (response.errors) setServerError(response.errors)

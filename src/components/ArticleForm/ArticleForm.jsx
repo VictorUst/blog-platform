@@ -85,7 +85,7 @@ const ArticleForm = ({ article, onSubmitArticle }) => {
                       type='text'
                       name='tag'
                       placeholder='tag'
-                      {...register(`tagList.${index}.name`)}
+                      {...register(`tagList.${index}.tagName`)}
                     />
                     <button type='button' className={classes.form__tagDelete__button} onClick={() => remove(index)}>Delete</button>
                   </li>
