@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 import { format } from 'date-fns';
 import classes from './Article.module.css';
-import like from '../../img/Like.png';
+import Like from '../Like/Like';
 
 const Article = ({ article }) => {
   const {
     slug,
     title,
     favoritesCount,
+    favorited,
     description,
     tagList,
     createdAt,
@@ -25,10 +26,7 @@ const Article = ({ article }) => {
               {title}
             </Link>
           </h2>
-          <div className={classes.article__like}>
-            <img className={classes.article__likeImg} src={like} alt='like' />
-          </div>
-          <div className={classes.article__likeCount}>{favoritesCount}</div>
+        <Like slug={slug} favorited={favorited} favoritesCount={favoritesCount} />
         </div>
         <div className={classes.article__tags}>
           {tagList && tagList.map(tag => <div key={tag} className={classes.article__tagItem}>{tag}</div>)}
@@ -57,6 +55,7 @@ Article.propTypes = {
       slug: PropTypes.string,
       title: PropTypes.string,
       favoritesCount: PropTypes.number,
+      favorited: PropTypes.bool,
       description: PropTypes.string,
       createdAt: PropTypes.string,
       tagList: PropTypes.arrayOf,

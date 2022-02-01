@@ -4,6 +4,7 @@ import { loadingAction } from "./loadingActions";
 export const SET_ARTICLES = 'SET_ARTICLES';
 export const SET_ARTICLE = 'SET_ARTICLE';
 export const CREATE_ARTICLE = 'CREATE_ARTICLE';
+export const FAVORITE_ARTICLE = 'FAVORITE_ARTICLE';
 
 export const setArticleList= (payload) => ({
   type: SET_ARTICLES,
@@ -17,6 +18,11 @@ export const setArticle = (payload) => ({
 
 export const createArticle = (payload) => ({
   type: CREATE_ARTICLE,
+  payload
+})
+
+export const favoriteArticle = (payload) => ({
+  type: FAVORITE_ARTICLE,
   payload
 })
 
@@ -46,4 +52,20 @@ export const getArticleItem = (slug) => (dispatch) => {
         dispatch(loadingAction(false));
       })
       .catch(() => dispatch(loadingAction(true)));
+}
+
+export const favoritesArticle = (token, slug) => (dispatch) => {
+  const apiService = new ApiService();
+  apiService.likeArticle(token, slug)
+      .then((response) => {
+        dispatch(favoriteArticle(response.article));
+      })
+}
+
+export const unfavoritesArticle = (token, slug) => (dispatch) => {
+  const apiService = new ApiService();
+  apiService.dislikeArticle(token, slug)
+      .then((response) => {
+        dispatch(favoriteArticle(response.article));
+      })
 }

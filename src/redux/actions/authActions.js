@@ -9,4 +9,3 @@ export const loginUser = (payload) => ({
 export const logoutUser = () => ({
     type: LOG_OUT_USER
   })
-

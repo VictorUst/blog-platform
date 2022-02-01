@@ -1,7 +1,8 @@
 import React from 'react';
 
 class ApiService extends React.Component {
-  baseUrl = 'https://kata.academy:8021/api';
+  // baseUrl = 'https://kata.academy:8021/api';
+  baseUrl = 'http://kata.academy:8022';
   // baseUrl = 'https://cirosantilli-realworld-next.herokuapp.com/api';
 
   // получение списка статей
@@ -103,6 +104,33 @@ class ApiService extends React.Component {
     )
     return response.json();
   }
+
+  async likeArticle(token, slug) {
+    const response = await fetch(`${this.baseUrl}/articles/${slug}/favorite`,
+      {
+        method:  'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Authorization': `Token ${token}`
+        }
+      }
+    )
+    return response.json();
+  }
+
+  async dislikeArticle(token, slug) {
+    const response = await fetch(`${this.baseUrl}/articles/${slug}/favorite`,
+      {
+        method:  'DELETE',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          'Authorization': `Token ${token}`
+        }
+      }
+    )
+    return response.json();
+  }
+
 }
 
 export default ApiService;

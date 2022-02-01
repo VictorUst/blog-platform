@@ -18,6 +18,7 @@
 .article__titleContainer {
   display: flex;
   margin-bottom: 5px;
+  align-items: center;
 }
 
 .article__title {
@@ -33,20 +34,6 @@
 .article__link {
   color: #1890FF;
   text-decoration: none;
-}
-
-.article__like {
-  width: 20px;
-  height: 20px;
-  margin-right: 1px;
-  align-self: flex-end;
-}
-
-.article__likeCount {
-  width: 20px;
-  height: 20px;
-  font-size: 15px;
-  align-self: flex-end;
 }
 
 .article__tags {

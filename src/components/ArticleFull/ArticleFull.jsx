@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 import { getArticleItem } from '../../redux/actions/articleActions';
 import ApiService from '../../services/apiService';
 import classes from './ArticleFull.module.css';
-import like from '../../img/Like.png';
+import Like from '../Like/Like';
 import Loader from '../Loader/Loader';
 import warning from '../../img/warning.svg';
 
@@ -21,6 +21,7 @@ const ArticleFull = () => {
 
   const {
     title,
+    favorited,
     favoritesCount,
     description,
     body,
@@ -54,10 +55,7 @@ const ArticleFull = () => {
                 {title}
               </Link>
             </h2>
-            <div className={classes.article__like}>
-              <img className={classes.article__likeImg} src={like} alt='like' />
-            </div>
-            <div className={classes.article__likeCount}>{favoritesCount}</div>
+          <Like slug={article.slug} favorited={favorited} favoritesCount={favoritesCount} />
           </div>
           <div className={classes.article__tags}>
             {tagList && tagList.map(tag => <div key={tag} className={classes.article__tagItem}>{tag}</div>)}
