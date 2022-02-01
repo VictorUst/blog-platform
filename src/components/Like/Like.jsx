@@ -17,27 +17,28 @@ const Like = ({ slug, favorited, favoritesCount }) => {
       setIsLikeDisabled(false);
     }
   }, [isLogin]);
+
   return (
     <>
       { !favorited ?
-            <button
-                className={classes.article__like}
-                type='button'
-                onClick={() => dispatch(favoritesArticle(token, slug))}
-                disabled={isLikeDisabled}
-              >
-              <img className={classes.article__likeImg} src={dislikeImg} alt='dislike' />
-            </button> :
-            <button
-                className={classes.article__like}
-                type='button'
-                onClick={() => dispatch(unfavoritesArticle(token, slug))}
-                disabled={isLikeDisabled}
-              >
-              <img className={classes.article__likeImg} src={likeImg} alt='like' />
-            </button>
-          }
-          <div className={classes.article__likeCount}>{favoritesCount}</div>
+          <button
+              className={classes.article__like}
+              type='button'
+              onClick={() => dispatch(favoritesArticle(token, slug))}
+              disabled={isLikeDisabled}
+            >
+            <img className={classes.article__likeImg} src={dislikeImg} alt='dislike' />
+          </button> :
+          <button
+              className={classes.article__like}
+              type='button'
+              onClick={() => dispatch(unfavoritesArticle(token, slug))}
+              disabled={isLikeDisabled}
+            >
+            <img className={classes.article__likeImg} src={likeImg} alt='like' />
+          </button>
+      }
+      <div className={classes.article__likeCount}>{favoritesCount}</div>
     </>
   )
 }
