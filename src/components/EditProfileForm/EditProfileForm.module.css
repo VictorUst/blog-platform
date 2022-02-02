@@ -30,6 +30,7 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 22px;
+  padding-bottom: 3px;
 }
 
 .field_input {
@@ -38,6 +39,7 @@
   border: 1px solid #d9d9d9;
   box-sizing: border-box;
   border-radius: 4px;
+  padding-left: 12px;
 }
 
 .field_input:focus {

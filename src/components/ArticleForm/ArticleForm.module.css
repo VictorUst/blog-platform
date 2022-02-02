@@ -7,6 +7,7 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 22px;
+  padding-bottom: 3px;
 }
 
 .form__field__input,
@@ -15,6 +16,7 @@
   border: 1px solid #d9d9d9;
   box-sizing: border-box;
   border-radius: 4px;
+  padding-left: 12px;
 }
 
 .form__field__input {
@@ -24,6 +26,7 @@
 .form__field__textarea {
   height: 168px;
   resize: none;
+  padding-top: 6px;
 }
 
 .form__field__input:focus,

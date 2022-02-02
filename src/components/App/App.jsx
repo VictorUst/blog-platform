@@ -9,23 +9,27 @@ import SignInForm from '../SignInForm/SignInForm';
 import EditProfileForm from '../EditProfileForm/EditProfileForm';
 import CreateNewArticle from '../CreateNewArticle/CreateNewArticle';
 import EditArticle from '../EditArticle/EditArticle';
+import routes from '../../utils/routes';
 
-const App = () => (
-    <Router>
-      <div className={classes.wrapper}>
-        <Header />
-        <Routes>
-          <Route path='/' element={ <Navigate to="/articles" /> } />
-          <Route path='/articles'  element={ <ArticleList /> } />
-          <Route path='/articles/:slug'  element={ <ArticleFull /> } />
-          <Route path='/sign-in'  element={ <SignInForm /> } />
-          <Route path='/sign-up'  element={ <SignUpForm /> } />
-          <Route path='/profile'  element={ <EditProfileForm /> } />
-          <Route path='/new-article'  element={ <CreateNewArticle /> } />
-          <Route path='/articles/:slug/edit'  element={ <EditArticle /> } />
-        </Routes>
-      </div>
-    </Router>
-  )
+const App = () => {
+  const { root, articles, article, signIn, signUp, editProfile, createNewArticle, editArticle } = routes;
 
+  return (
+      <Router>
+        <div className={classes.wrapper}>
+          <Header />
+          <Routes>
+            <Route path={root} element={ <Navigate to={articles} /> } />
+            <Route path={articles}  element={ <ArticleList /> } />
+            <Route path={article}  element={ <ArticleFull /> } />
+            <Route path={signIn}  element={ <SignInForm /> } />
+            <Route path={signUp}  element={ <SignUpForm /> } />
+            <Route path={editProfile}  element={ <EditProfileForm /> } />
+            <Route path={createNewArticle}  element={ <CreateNewArticle /> } />
+            <Route path={editArticle}  element={ <EditArticle /> } />
+          </Routes>
+        </div>
+      </Router>
+    )
+}
 export default App;

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
 import { getArticleItem } from '../../redux/actions/articleActions';
+import { loadingAction } from '../../redux/actions/loadingActions';
 import ApiService from '../../services/apiService';
 import classes from './ArticleFull.module.css';
 import Like from '../Like/Like';
@@ -37,9 +38,12 @@ const ArticleFull = () => {
   }, [dispatch, slug]);
 
   const onDelete = () => {
-    apiService.deleteArticle(token, slug).then(() => {
-      navigate('/');
-    });
+    apiService.deleteArticle(token, slug);
+    dispatch(loadingAction(true));
+    setTimeout(() => {
+      navigate('/articles');
+      dispatch(loadingAction(false));
+    }, 100);
     setShowDeleteMessage(false);
   }
 
