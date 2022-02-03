@@ -1,7 +1,7 @@
 class ApiService {
-  baseUrl = 'https://kata.academy:8021/api';
+  // baseUrl = 'https://kata.academy:8021/api';
   // baseUrl = 'http://kata.academy:8022/api';
-  // baseUrl = 'https://cirosantilli-realworld-next.herokuapp.com/api';
+  baseUrl = 'https://cirosantilli-realworld-next.herokuapp.com/api';
 
   // получение списка статей
   async getArticlesList(page = 1) {
