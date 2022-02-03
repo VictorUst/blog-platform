@@ -12,6 +12,7 @@ const UserLogInView = () => {
 
   const onLogOut = () => {
     dispatch(logoutUser());
+    localStorage.removeItem('user');
   }
 
   return (

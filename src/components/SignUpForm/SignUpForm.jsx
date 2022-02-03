@@ -30,6 +30,7 @@ const SignUpForm = () => {
     apiService.registerUser(data).then((response) => {
       if(response.user) {
         dispatch(loginUser(response.user));
+        localStorage.setItem('user', JSON.stringify(response.user));
         navigate('/');
       }
       if(response.errors) {

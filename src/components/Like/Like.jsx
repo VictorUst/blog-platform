@@ -18,13 +18,21 @@ const Like = ({ slug, favorited, favoritesCount }) => {
     }
   }, [isLogin]);
 
+  const onLike = () => (
+    dispatch(favoritesArticle(token, slug))
+    )
+
+  const onDisLike = () => (
+    dispatch(unfavoritesArticle(token, slug))
+    )
+
   return (
     <>
       { !favorited ?
           <button
               className={classes.article__like}
               type='button'
-              onClick={() => dispatch(favoritesArticle(token, slug))}
+              onClick={() => onLike()}
               disabled={isLikeDisabled}
             >
             <img className={classes.article__likeImg} src={dislikeImg} alt='dislike' />
@@ -32,7 +40,7 @@ const Like = ({ slug, favorited, favoritesCount }) => {
           <button
               className={classes.article__like}
               type='button'
-              onClick={() => dispatch(unfavoritesArticle(token, slug))}
+              onClick={() => onDisLike()}
               disabled={isLikeDisabled}
             >
             <img className={classes.article__likeImg} src={likeImg} alt='like' />
